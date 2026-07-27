@@ -1,0 +1,29 @@
+name: First Pipeline
+on:
+    push:
+        branches: [ main ]
+    pull_request:
+        branches: [main]
+    workflow_dispatch:
+
+jobs:
+    hello-job:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Hello World
+              run: echo " Hello Github Actions "
+
+            - name: Show OS
+              run: |
+                echo "OS: ${{ runner.os }}"
+                echo "Directory: ${pwd}"
+                echo "Date: ${date}"
+                echo "User: ${whoami}"
+
+            - name: List repository files
+              run: ls -la
+            
