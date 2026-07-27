@@ -30,4 +30,9 @@ Every pipeline, workflow, and configuration is an opportunity to:
 
 ```text
 pipeline-labs/
-├── github-actions/
+ └── .github/ 
+    └── workflows/ 
+        ├── 01-pipeline.yml 
+        ├── 02-pipeline.yml 
+        ├── 03-pipeline.yml 
+        └── ...
