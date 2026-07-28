@@ -1,0 +1,29 @@
+name: Cron 
+on:
+  schedule:
+    # Execute at 21:55 Brasilia (UTC)
+    - cron: '55 00 * * *'
+  workflow_dispatch:
+
+jobs:
+  scheduled-job:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@4
+
+    - name: Scheduled Run Information 
+      run: |
+        echo "Workflow triggered by SCHEDULE"
+        echo "Today is: $(date)"
+        echo "UTC: $(date -u)"
+        echo "Timezone: $(date +%Z)"
+
+    - name: Daily report
+      run: | 
+        echo "DAILY REPORT"
+        echo "======================"
+        echo "total commits: $(git rev-list --all --count)"
+        echo "Unique Contributors: $(git shortlog -sn | wc -l)"
+        echo "latest commit: $(git log -1 --pretty=format: '%h - %s (%an, %ar)')"
