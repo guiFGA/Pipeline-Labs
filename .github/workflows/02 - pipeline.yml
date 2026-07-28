@@ -27,5 +27,6 @@ jobs:
         echo "======================"
         echo "Triggered by: ${{github.event_name}}"
         echo "total commits: $(git rev-list --all --count)"
-        echo "Unique Contributors: $(git shortlog -sn | wc -l)"
+        echo "Contributors:"
+        git shortlog -sne --all
         echo "latest commit: $(git log -1 --pretty=format:'%h - %s (%an, %ar)')"
