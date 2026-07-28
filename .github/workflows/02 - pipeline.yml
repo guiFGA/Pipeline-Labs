@@ -12,10 +12,11 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
+      with: 
+        fetch-depth: 0
 
     - name: Scheduled Run Information 
       run: |
-        echo "Workflow triggered by SCHEDULE"
         echo "Today is: $(date)"
         echo "UTC: $(date -u)"
         echo "Timezone: $(date +%Z)"
@@ -24,6 +25,7 @@ jobs:
       run: | 
         echo "DAILY REPORT"
         echo "======================"
+        echo "Triggered by: ${{github.event_name}}"
         echo "total commits: $(git rev-list --all --count)"
         echo "Unique Contributors: $(git shortlog -sn | wc -l)"
-        echo "latest commit: $(git log -1 --pretty=format: '%h - %s (%an, %ar)')"
+        echo "latest commit: $(git log -1 --pretty=format:'%h - %s (%an, %ar)')"
